@@ -101,6 +101,14 @@ fun WetherDashboardScreen(
                 style = MaterialTheme.typography.bodyMedium
             )
         }
+        if (wetherState.loadingProgress.isNotEmpty()) {
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = wetherState.loadingProgress,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.secondary
+            )
+        }
     }
 }
 @Composable
