@@ -86,6 +86,14 @@ fun WetherDashboardScreen(
             value = wetherState.windSpeed?.let { "$it m/s" }?: "-",
             isLoading = wetherState.isLoading && wetherState.windSpeed == null
         )
+        if (wetherState.wetherIndex != null) {
+            WeatherCard(
+                emoji = "📊",
+                title = "Weather Index",
+                value = "${wetherState.wetherIndex}",
+                isLoading = false
+            )
+        }
         Spacer(modifier = Modifier.height(32.dp))
         Button(
             onClick = {viewModel.loadWeatherData()},
