@@ -11,6 +11,8 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.async
 import java.lang.Exception
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.flow
 
 class WeatherViewModel: ViewModel() {
     private val repository = WeatherRepository()
@@ -19,6 +21,7 @@ class WeatherViewModel: ViewModel() {
 
     init {
         loadWeatherData()
+        startAutoRefresh()
     }
 
     fun loadWeatherData() {
@@ -109,5 +112,17 @@ class WeatherViewModel: ViewModel() {
 
     fun toggleErrorSimulation() {
         repository.toggleErrorSimulation()
+    }
+    private fun startAutoRefresh() {
+        viewModelScope.launch {
+            flow {
+                while (true) {
+                    delay(10000)
+                    emit(Unit)
+                }
+            }.collect {
+                loadWeatherData()
+            }
+        }
     }
 }

@@ -30,6 +30,7 @@ import androidx.compose.ui.Alignment
 import com.Fedorov.myapplication.ui.theme.WeatherDashboardTheme
 import com.Fedorov.myapplication.viewmodel.WeatherViewModel
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 
@@ -92,6 +93,16 @@ fun WetherDashboardScreen(
                 title = "Weather Index",
                 value = "${wetherState.wetherIndex}",
                 isLoading = false
+            )
+        }
+        Spacer(modifier = Modifier.height(16.dp))
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = "🔄 Auto-refresh every 10s",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.tertiary
             )
         }
         Spacer(modifier = Modifier.height(32.dp))
