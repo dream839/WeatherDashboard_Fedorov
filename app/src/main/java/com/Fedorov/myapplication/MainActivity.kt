@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.collectAsState
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.Arrangement
@@ -92,6 +93,11 @@ fun WetherDashboardScreen(
         ) {
             Text(text = if (wetherState.isLoading)"Loading..." else "🔄 Refresh" +
                     "Weather")
+        }
+        OutlinedButton(
+            onClick = {viewModel.toggleErrorSimulation()}
+        ) {
+            Text(text = "⚠ Simulate Error")
         }
         if (wetherState.error != null) {
             Spacer(modifier = Modifier.height(16.dp))
